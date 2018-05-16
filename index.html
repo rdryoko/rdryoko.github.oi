@@ -2,12 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QGIS_WebApp_4</title>
+<title>index</title>
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 <link rel="stylesheet" type="text/css" href="./Qgis2threejs.css">
 </head>
 <body>
 <div id="webgl"></div>
+<div id="labels"></div>
 
 <!-- popup -->
 <div id="popup" style="display:none;">
@@ -24,7 +25,7 @@
 
   <h1>About</h1>
   <div id="about">This page was made with <a href="http://www.qgis.org/" target="_blank">QGIS</a> and <a href="https://github.com/minorua/Qgis2threejs" target="_blank">Qgis2threejs</a> plugin, 
-and uses the following library:
+and uses the following libraries:
   <ul>
   <li>three.js <a href="http://threejs.org/" target="_blank">http://threejs.org/</a> <a href="./threejs/LICENSE" target="_blank" class="license">(LICENSE)</a></li>
   <li>dat-gui <a href="https://code.google.com/p/dat-gui/" target="_blank">https://code.google.com/p/dat-gui/</a> <a href="./dat-gui/license.txt" target="_blank" class="license">(LICENSE)</a></li>
@@ -40,31 +41,35 @@ and uses the following library:
 <script src="./threejs/three.min.js"></script>
 <script src="./Qgis2threejs.js"></script>
 <script src="./threejs/OrbitControls.js"></script>
+<script src="./dat-gui/dat.gui.min.js"></script>
+<script src="./dat-gui_panel.js"></script>
 <script>
 var option = Q3D.Options;
 
 </script>
-<script src="./QGIS_WebApp_4.js"></script>
+
 <script>
 if (typeof proj4 !== "undefined") document.getElementById("lib_proj4js").style.display = "list-item";
 
-var container = document.getElementById("webgl");
-// initialize application
-var app = Q3D.application;
-app.init(container);
+var app = Q3D.application,
+    container = document.getElementById("webgl");
+app.init(container, false);   // initialize application
 
-// load the project
-app.loadProject(project);
+// set custom plane z range when all objects have been loaded
+app.addEventListener("sceneLoaded", function () {
+  var box = new THREE.Box3().setFromObject(app.scene),
+      zMin = app.scene.toMapCoordinates(0, 0, box.min.y).z,
+      zMax = app.scene.toMapCoordinates(0, 0, box.max.y).z;
+  Q3D.gui.initCustomPlaneFolder(zMin, zMax);
+});
 
-app.addEventListeners();
+// load the scene
+app.loadJSONFile("./data/index/scene.json", function () {
+  Q3D.gui.init();   // initialize dat-gui panel
+});
+
 app.start();
 
-</script>
-<script src="./dat-gui/dat.gui.min.js"></script>
-<script src="./dat-gui_panel.js"></script>
-<script>
-// initialize dat-gui panel
-Q3D.gui.init();
 </script>
 </body>
 </html>

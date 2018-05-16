@@ -1,0 +1,165 @@
+{
+  "type": "scene",
+  "properties": {
+    "height": 56.76113360323887,
+    "width": 100.0,
+    "baseExtent": [
+      6521733.540866766,
+      1740136.9773117844,
+      6531936.279877318,
+      1745928.1676327535
+    ],
+    "crs": "EPSG:2229",
+    "proj": "+proj=lcc +lat_1=35.46666666666667 +lat_2=34.03333333333333 +lat_0=33.5 +lon_0=-118 +x_0=2000000.0001016 +y_0=500000.0001016001 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs",
+    "rotation": 0,
+    "wgs84Center": {
+      "lat": 33.78190656003291,
+      "lon": -118.11461929161226
+    },
+    "zExaggeration": 1.0,
+    "zShift": 0.0
+  },
+  "layers": [
+    {
+      "type": "layer",
+      "id": 0,
+      "properties": {
+        "name": "Buildings",
+        "queryable": 1,
+        "visible": true,
+        "type": "polygon",
+        "objType": "Extruded"
+      },
+      "data": {
+        "materials": [
+          {
+            "type": 0,
+            "c": 7958908
+          },
+          {
+            "type": 2,
+            "c": 0
+          }
+        ],
+        "blocks": [
+          {
+            "url": "./data/index/L0_GEOM0.json"
+          },
+          {
+            "url": "./data/index/L0_GEOM1.json"
+          },
+          {
+            "url": "./data/index/L0_GEOM2.json"
+          },
+          {
+            "url": "./data/index/L0_GEOM3.json"
+          }
+        ]
+      }
+    },
+    {
+      "type": "layer",
+      "id": 1,
+      "properties": {
+        "name": "Basemap_1",
+        "queryable": 1,
+        "visible": true,
+        "type": "dem",
+        "shading": true
+      },
+      "data": [
+        {
+          "type": "block",
+          "layer": 1,
+          "block": 0,
+          "grid": {
+            "width": 266,
+            "height": 151,
+            "url": "./data/index/L1_DEM0.bin"
+          },
+          "width": 100.0,
+          "height": 56.76113360323887,
+          "translate": [
+            0.0,
+            0.0,
+            0
+          ],
+          "material": {
+            "type": 0,
+            "image": {
+              "url": "./data/index/L1_IMG0.png"
+            },
+            "ds": 1
+          },
+          "sides": true
+        }
+      ]
+    },
+    {
+      "type": "layer",
+      "id": 2,
+      "properties": {
+        "name": "Parking Structures",
+        "queryable": 1,
+        "visible": true,
+        "type": "polygon",
+        "objType": "Extruded"
+      },
+      "data": {
+        "materials": [
+          {
+            "type": 0,
+            "c": 8484993
+          },
+          {
+            "type": 2,
+            "c": 0
+          }
+        ],
+        "blocks": [
+          {
+            "url": "./data/index/L2_GEOM0.json"
+          }
+        ]
+      }
+    },
+    {
+      "type": "layer",
+      "id": 4,
+      "properties": {
+        "name": "dem_2016",
+        "queryable": 1,
+        "visible": true,
+        "type": "dem",
+        "shading": true
+      },
+      "data": [
+        {
+          "type": "block",
+          "layer": 4,
+          "block": 0,
+          "grid": {
+            "width": 266,
+            "height": 151,
+            "url": "./data/index/L3_DEM0.bin"
+          },
+          "width": 100.0,
+          "height": 56.76113360323887,
+          "translate": [
+            0.0,
+            0.0,
+            0
+          ],
+          "material": {
+            "type": 0,
+            "image": {
+              "url": "./data/index/L3_IMG0.png"
+            },
+            "ds": 1
+          },
+          "sides": true
+        }
+      ]
+    }
+  ]
+}
